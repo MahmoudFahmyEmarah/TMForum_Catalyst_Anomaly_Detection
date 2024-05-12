@@ -1,20 +1,30 @@
-Project Title: LLM based Order Anomaly Detection
+# LLM based Order Anomaly Detection
 
-Description:
+## Project Overview
 
-This repository contains the source code for a robust Complaint Prediction and Validation System designed to classify and predict potential customer complaints from order details. Utilizing Kafka for real-time data streaming, the system processes order completion messages to predict the likelihood of a complaint, leveraging the open-source llama3 model for inference. The workflow includes consuming Kafka topics, processing data, interacting with external APIs to fetch and verify order details, and producing outcomes to another Kafka topic based on the analysis. The system is structured to facilitate easy maintenance and scalability.
+This repository hosts the Complaint Prediction and Validation System, a sophisticated solution designed to predict potential customer complaints based on order details. The system integrates Kafka for real-time message streaming, employs the open-source llama3 model for predictive analytics, and ensures data accuracy through external API interactions. It's structured for scalability and maintainability, equipped with robust error handling and logging functionalities.
 
-Key Features:
+## Key Features
 
-Real-time Data Streaming: Uses Kafka to consume and produce messages pertaining to order completion and complaint predictions.
-Data Processing: Includes modules for transforming and preparing data for prediction.
-Machine Learning Inference: Utilizes the llama3 model to predict potential complaints based on order characteristics and historical data.
-API Integration: Communicates with external APIs to validate order details against catalog items.
-Error Handling and Logging: Robust error handling and detailed logging to ensure reliability and ease troubleshooting.
-Technologies Used:
+- **Real-Time Data Streaming:** Utilizes Kafka for consuming and producing messages related to order transactions and complaint predictions.
+- **Data Processing:** Implements modules for data extraction and transformation to prepare inputs for predictive modeling.
+- **Machine Learning Inference:** Uses the llama3 model to assess the likelihood of customer complaints based on current and historical data.
+- **API Integration:** Verifies order details against product catalogs through external API calls.
+- **Error Handling and Logging:** Incorporates comprehensive error handling and detailed logging to aid in troubleshooting and system monitoring.
 
-Kafka for message streaming.
-Python for backend processing.
-Llama3 for machine learning inference.
-Pandas for data manipulation.
-Requests for HTTP requests handling.
+## Technologies Used
+
+- **Kafka:** For messaging and real-time data streaming.
+- **Python:** For backend logic and data processing.
+- **Llama3 Model:** For generating predictive insights.
+- **Pandas:** For data manipulation and analysis.
+- **Requests:** For handling HTTP requests.
+
+## Installation
+
+To set up the project on your local machine:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/complaint-prediction-system.git
+
