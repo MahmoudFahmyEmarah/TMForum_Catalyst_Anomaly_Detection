@@ -9,8 +9,8 @@ def consume_orders(topic_name):
     try:
         consumer = KafkaConsumer(
             topic_name,
-            bootstrap_servers=[config.KAFKA_BROKER_URL],
-            **config.KAFKA_CONSUMER_CONFIG
+            bootstrap_servers=[config.KAFKA_BROKER_URL]
+            #,**config.KAFKA_CONSUMER_CONFIG
         )
         for message in consumer:
             yield json.loads(message.value)
@@ -62,7 +62,7 @@ def parse_kafka_response(order_details):
         if not found_add_action:
             # If no item with action 'ADD' is found, raise an exception
             raise ValueError("No productOrderItem with action 'ADD' found.")
-    
+
     except KeyError as e:
         # Handle missing key errors
         return f"Key error: {str(e)} - required key not found in the input."
