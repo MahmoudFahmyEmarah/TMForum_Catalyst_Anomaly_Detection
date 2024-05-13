@@ -1,31 +1,27 @@
 import json
-import config
 import logging
 from openai import OpenAI as OPENAI
+from dotenv import load_dotenv
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-def format_and_send_prompt(df, order_details_json):
-    try:
-        # Placeholder for actual implementation
-        pass
-    except Exception as e:
-        logging.error(f"Error in model inference: {e}")
-        raise
 
 
 def format_and_send_prompt(df, order_details_json):
     try:
-    # Initialize your OpenAI client
+        # Initialize your OpenAI client
+        load_dotenv()
         client = OPENAI()
-        offer_name = order_details_json['OfferName'] 
-        offer_data = offer_name = order_details_json['MobileData']
+        offer_name = order_details_json['OfferName']
+        offer_data = order_details_json['MobileData']
+
         # Function to prefix each entry with its column name
         def prefix_entry(entry, col_name):
             return f"{col_name}:{entry}"
-        
+
         # Apply the function to each element in the DataFrame
         formatted_df = df.apply(lambda col: col.apply(prefix_entry, col_name=col.name))
-        
+
         # Convert the DataFrame to a string that looks like a table
         dataset = formatted_df.to_string(index=False)
         order_query = f"OfferName:{offer_name} ,MobileData:{offer_data}"
@@ -46,7 +42,7 @@ def format_and_send_prompt(df, order_details_json):
         Format the response as a json object with the fields:
         - Potential_Complaint
         - Probability_of_Complaint
-        - TicketType
+        - TicketTitle
         - Recommended_solution
         """
         print("Raw Template Body:", template_text)
@@ -72,7 +68,7 @@ def format_and_send_prompt(df, order_details_json):
             "Probability_of_Complaint": response_data["Probability_of_Complaint"],
             "TicketType": response_data["TicketType"]
         }
-        
+
         return result
     except json.JSONDecodeError as e:
         logging.error(f"Error parsing JSON response: {e}")
