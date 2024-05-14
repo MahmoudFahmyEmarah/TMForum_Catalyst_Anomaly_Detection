@@ -24,7 +24,7 @@ def format_and_send_prompt(df, order_details_json):
 
         # Convert the DataFrame to a string that looks like a table
         dataset = formatted_df.to_string(index=False)
-        order_query = f"OfferName:{offer_name} ,MobileData:{offer_data}"
+        order_query = f"OfferName: {offer_name} ,MobileData: {offer_data}"
         # Prepare the template text with the dataset formatted as a table
         # Prepare the template text with the dataset formatted as a table
         template_text = f"""
@@ -34,7 +34,9 @@ def format_and_send_prompt(df, order_details_json):
         {dataset}
 
         For the orders details data frame: '{order_query}', predict based on the compination of OfferName and MobileData fields represented in the previous data frame:
-        1. The likelihood of a complaint predict the value of the Complained filed for the given oredr (0 or 1).
+        1. The likelihood of a complaint predict the value of the Complained filed for the given oredr (0 or 1) 
+        for example if the order is : OfferName:Global Mobile Plus MobileData:100GB Complained:0 then the Potential_Complaint is 0
+        and if OfferName:Global Mobile Plus  MobileData:10GB Complained:1 Then then the Potential_Complaint is 1 and so on.
         2. The probability of complaint occurrence based on the records count as a float number from 0 to 1 rounded to two decimal points
         3. The likely ticket type.
         4- Generate a text to recommend that the solution caused by Catalogue mismatch detected, a new modify order has been created by Self Healing engine
