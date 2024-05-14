@@ -29,3 +29,46 @@ def produce_complaint(topic_name, message):
     except Exception as e:
         logging.error(f"Failed to produce message: {e}")
         raise
+
+#Parse the response we get from kafka consumer
+def parse_kafka_response(order_details):
+    try:
+        # Check if the order status is 'Completed'
+        if order_details["state"] != "Completed":
+            return {'Error':"Order is not completed."}
+
+        # Initialize the flattened result dictionary with the OrderId and CustomerId
+        flattened = {
+            "OrderId": order_details["OrderId"],
+            "CustomerId": order_details["CustomerId"]
+        }
+
+        # Find the productOrderItem with action 'ADD'
+        found_add_action = False
+        for item in order_details.get("productOrderItem", []):
+            if item.get("action") == "ADD":
+                found_add_action = True
+                # Add relevant fields from this item to the flattened dictionary
+                flattened.update({
+                    "OfferName": item.get("OfferName", ""),
+                    "productOffering": item.get("productOffering", ""),
+                    "MobileData": item.get("MobileData", ""),
+                    "MobileVoice": item.get("MobileVoice", ""),
+                    "Text": item.get("Text", ""),
+                    "Price": f"€{item.get('Price', '')}"
+                })
+                break  # Stop after the first match
+
+        if not found_add_action:
+            # If no item with action 'ADD' is found, raise an exception
+            raise ValueError("No productOrderItem with action 'ADD' found.")
+    
+    except KeyError as e:
+        # Handle missing key errors
+        return f"Key error: {str(e)} - required key not found in the input."
+    except Exception as e:
+        # Handle any other exceptions that might occur
+        return f"An error occurred: {str(e)}"
+
+    # Return the successfully flattened dictionary
+    return flattened
