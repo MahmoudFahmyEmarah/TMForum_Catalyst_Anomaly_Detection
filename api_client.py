@@ -5,8 +5,10 @@ import config
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-def fetch_order_details(productOffering, json_order_details):
+def fetch_order_details(json_order_details):
     try:
+        #Get productOffering from the oder details
+        productOffering = json_order_details.get("productOffering", "")
         # Construct the API URL using the productOffering ID
         url = f"{config.API_BASE_URL}{productOffering}"
         headers = {'Cookie': 'STICKYQ=5990776d322bc0e13fc7ff91f7ceac42|ZkEkq|ZkEki'}
