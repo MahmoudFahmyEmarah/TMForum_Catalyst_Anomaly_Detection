@@ -3,6 +3,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
+
 def get_unique_records(df, offername):
     try:
         offer_df = df[df['OfferName'] == offername]

@@ -3,7 +3,12 @@ import json
 import config
 import logging
 
+from classfiction_service import classification_model
+from data_processing import get_unique_records
+from model_inference import format_and_send_prompt
+
 logging.basicConfig(level=logging.INFO)
+
 
 def consume_orders(topic_name):
     try:
@@ -18,6 +23,27 @@ def consume_orders(topic_name):
         logging.error(f"Failed to consume messages: {e}")
         raise
 
+
+def consumer_service(df):
+    for order_details in consume_orders("complains"):
+        print(order_details)
+        # processing logic here
+        print("classification model response")
+        classification_model(order_details)
+
+        print("offer statistics")
+        offer_statistics = get_unique_records(df, order_details['OfferName'])
+        print(offer_statistics)
+
+        #openai model
+        response = format_and_send_prompt(offer_statistics, order_details)
+        print(response)
+
+        # fetch_order_details(order_details['OrderId'])
+
+        logging.info(f"Processing order: {order_details['OrderId']}")
+
+
 def produce_complaint(topic_name, message):
     try:
         producer = KafkaProducer(
@@ -29,8 +55,6 @@ def produce_complaint(topic_name, message):
     except Exception as e:
         logging.error(f"Failed to produce message: {e}")
         raise
-
-
 
 #
 # message = {
