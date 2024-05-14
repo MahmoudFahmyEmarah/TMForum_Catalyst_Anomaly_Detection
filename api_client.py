@@ -9,12 +9,13 @@ def fetch_order_details(json_order_details):
     try:
         #Get productOffering from the oder details
         productOffering = json_order_details.get("productOffering", "")
+        print(productOffering)
         # Construct the API URL using the productOffering ID
         url = f"{config.API_BASE_URL}{productOffering}"
         headers = {'Cookie': 'STICKYQ=5990776d322bc0e13fc7ff91f7ceac42|ZkEkq|ZkEki'}
 
         # Fetch the original order details from the API
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers,verify=False)
         response.raise_for_status()
         api_order_details = response.json()
 
