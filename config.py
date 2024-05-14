@@ -11,4 +11,3 @@ KAFKA_CONSUMER_CONFIG = {
 
 # API Configuration
 API_BASE_URL = "https://arcturus-api.dev.apps.qeema.io/api/product/"
-

@@ -1,9 +1,5 @@
 import pandas as pd
-from classfiction_service import classification_model
-from kafka_client import consume_orders, produce_complaint, consumer_service
-from data_processing import get_unique_records
-from model_inference import format_and_send_prompt
-from api_client import fetch_order_details
+from kafka_client import consumer_service
 import logging
 
 logging.basicConfig(level=logging.INFO)

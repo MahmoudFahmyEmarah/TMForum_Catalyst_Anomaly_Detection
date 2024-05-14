@@ -4,12 +4,13 @@ import config
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
 def fetch_order_details(productOffering, json_order_details):
     try:
         # Construct the API URL using the productOffering ID
         url = f"{config.API_BASE_URL}{productOffering}"
         headers = {'Cookie': 'STICKYQ=5990776d322bc0e13fc7ff91f7ceac42|ZkEkq|ZkEki'}
-        
+
         # Fetch the original order details from the API
         response = requests.get(url, headers=headers)
         response.raise_for_status()

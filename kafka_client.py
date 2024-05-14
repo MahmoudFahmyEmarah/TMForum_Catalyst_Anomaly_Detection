@@ -56,12 +56,13 @@ def produce_complaint(topic_name, message):
         logging.error(f"Failed to produce message: {e}")
         raise
 
+
 #Parse the response we get from kafka consumer
 def parse_kafka_response(order_details):
     try:
         # Check if the order status is 'Completed'
         if order_details["state"] != "Completed":
-            return {'Error':"Order is not completed."}
+            return {'Error': "Order is not completed."}
 
         # Initialize the flattened result dictionary with the OrderId and CustomerId
         flattened = {
