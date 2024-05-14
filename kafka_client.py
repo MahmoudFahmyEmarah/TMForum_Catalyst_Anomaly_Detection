@@ -3,6 +3,7 @@ import json
 import config
 import logging
 
+from api_client import fetch_order_details
 from classfiction_service import classification_model
 from data_processing import get_unique_records
 from model_inference import format_and_send_prompt
@@ -26,6 +27,7 @@ def consume_orders(topic_name):
 
 def consumer_service(df):
     for order_details in consume_orders("complains"):
+        #order_details = parse_kafka_response(order_details)
         print(order_details)
         # processing logic here
         print("classification model response")
@@ -37,7 +39,11 @@ def consumer_service(df):
 
         #openai model
         response = format_and_send_prompt(offer_statistics, order_details)
-        print(response)
+        if response['Potential_Complaint'] == 1:
+            orders_status = fetch_order_details(order_details)
+            if orders_status == 0:
+                produce_complaint("Response", response)
+                print("response pushed to the producer topic")
 
         # fetch_order_details(order_details['OrderId'])
 
