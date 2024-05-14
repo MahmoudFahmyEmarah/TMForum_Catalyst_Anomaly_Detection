@@ -25,8 +25,8 @@ def consume_orders(topic_name):
 
 
 def consumer_service(df):
-    for order_details in consume_orders("complains"):
-        #order_details = parse_kafka_response(order_details)
+    for order_details in consume_orders(config.KAFKA_CONSUMER_TOPIC):
+        order_details = parse_kafka_response(order_details)
         print(order_details)
         # processing logic here
         print("offer statistics")
@@ -38,10 +38,8 @@ def consumer_service(df):
         if response['Potential_Complaint'] == 1:
             orders_status = fetch_order_details(order_details)
             if orders_status == 0:
-                produce_complaint("Response", response)
+                produce_complaint(config.KAFKA_PRODUCER_TOPIC, response)
                 print("response pushed to the producer topic")
-
-        # fetch_order_details(order_details['OrderId'])
 
         logging.info(f"Processing order: {order_details['OrderId']}")
 
