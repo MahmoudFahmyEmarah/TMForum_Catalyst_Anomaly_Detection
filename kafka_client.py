@@ -4,7 +4,6 @@ import config
 import logging
 
 from api_client import fetch_order_details
-from classfiction_service import classification_model
 from data_processing import get_unique_records
 from model_inference import format_and_send_prompt
 
@@ -16,7 +15,7 @@ def consume_orders(topic_name):
         consumer = KafkaConsumer(
             topic_name,
             bootstrap_servers=[config.KAFKA_BROKER_URL]
-            #,**config.KAFKA_CONSUMER_CONFIG
+            ,**config.KAFKA_CONSUMER_CONFIG
         )
         for message in consumer:
             yield json.loads(message.value)
@@ -30,9 +29,6 @@ def consumer_service(df):
         #order_details = parse_kafka_response(order_details)
         print(order_details)
         # processing logic here
-        print("classification model response")
-        classification_model(order_details)
-
         print("offer statistics")
         offer_statistics = get_unique_records(df, order_details['OfferName'])
         print(offer_statistics)
