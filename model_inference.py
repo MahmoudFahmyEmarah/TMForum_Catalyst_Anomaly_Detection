@@ -37,7 +37,7 @@ def format_and_send_prompt(df, order_details_json):
         1. The likelihood of a complaint predict the value of the Complained filed for the given oredr (0 or 1).
         2. The probability of complaint occurrence based on the records count as a float number from 0 to 1 rounded to two decimal points
         3. The likely ticket type.
-        4- Generate a text to recommend that It would be advisable to cross-reference the original order catalogue, as discrepancies between the master and slave catalogues could potentially exis
+        4- Generate a text to recommend that the solution caused by Catalogue mismatch detected, a new modify order has been created by Self Healing engine
 
         Format the response as a json object with the fields:
         - Potential_Complaint
@@ -66,7 +66,8 @@ def format_and_send_prompt(df, order_details_json):
             "OrderID": order_details_json['OrderId'],
             "Potential_Complaint": response_data["Potential_Complaint"],
             "Probability_of_Complaint": response_data["Probability_of_Complaint"],
-            "TicketTitle": response_data["TicketTitle"]
+            "TicketTitle": response_data["TicketTitle"],
+            "Recommended_solution": response_data["Recommended_solution"]
         }
 
         return result
