@@ -66,7 +66,7 @@ def format_and_send_prompt(df, order_details_json):
             "OrderID": order_details_json['OrderId'],
             "Potential_Complaint": response_data["Potential_Complaint"],
             "Probability_of_Complaint": response_data["Probability_of_Complaint"],
-            "TicketType": response_data["TicketType"]
+            "TicketTitle": response_data["TicketTitle"]
         }
 
         return result
