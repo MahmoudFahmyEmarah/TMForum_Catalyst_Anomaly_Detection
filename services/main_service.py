@@ -28,7 +28,6 @@ def main_service(df: DataFrame):
         valid_order = DataValidationError.validate_order_details(order_details)
         if not valid_order:
             logging.error("Invalid order details , the shape of the order details is not as expected")
-            print("ss")
 
         order_details = KafkaHelper.parse_response(order_details)
 

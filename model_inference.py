@@ -49,7 +49,6 @@ def format_and_send_prompt(df, order_details_json):
         - TicketTitle
         - Recommended_solution
         """
-        print("Raw Template Body:", template_text)
         # Send the prompt to the OpenAI API
         response = client.chat.completions.create(
             model="gpt-3.5-turbo-0125",
@@ -59,7 +58,6 @@ def format_and_send_prompt(df, order_details_json):
                 {"role": "user", "content": template_text}
             ]
         )
-        print("Raw Response Body:", response)
         # Return the response content
         response = response.choices[0].message.content
         # Parse the JSON string to a Python dictionary

@@ -84,8 +84,6 @@ def process_response(response: dict, order_details_json: dict) -> dict:
     """
     response = response.choices[0].message.content
     response_data = json.loads(response)
-    print("response_data", response_data)
-    print("order_details_json", order_details_json)
     result = {
         "orderID": order_details_json['OrderId'],
         "orderItemID": order_details_json['orderItemId'],
