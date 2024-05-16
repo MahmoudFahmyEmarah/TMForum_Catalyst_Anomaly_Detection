@@ -28,7 +28,7 @@ def format_and_send_prompt(df, order_details_json):
 
         # Convert the DataFrame to a string that looks like a table
         dataset = formatted_df.to_string(index=False)
-        order_query = f"OfferName: {offer_name} ,MobileData: {offer_data}"
+        order_query = f"OfferName: {offer_name} ,MobileData: {offer_data}GB"
         # Prepare the template text with the dataset formatted as a table
         # Prepare the template text with the dataset formatted as a table
         template_text = f"""
