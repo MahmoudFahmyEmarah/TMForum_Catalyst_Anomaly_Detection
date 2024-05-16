@@ -1,0 +1,79 @@
+    # order_details = {
+    #         "OrderId": "5615a707-17a2-4dea-986e-d150061f8ead",
+    #
+    #         "productOrderItem": [
+    #
+    #             {
+    #
+    #                 "orderItemId": "100",
+    #
+    #                 "OfferName": "Global Mobile Plus",
+    #
+    #                 "productOffering": "76",
+    #
+    #                 "action": "delete"
+    #
+    #             },
+    #
+    #             {
+    #
+    #                 "orderItemId": "101",
+    #
+    #                 "OfferName": "Global Mobile Plus",
+    #
+    #                 "productOffering": "154",
+    #
+    #                 "action": "add",
+    #
+    #                 "MobileData": "80",
+    #
+    #                 "MobileVoice": "100",
+    #
+    #                 "Text": "100",
+    #
+    #                 "Price": "50"
+    #
+    #             }
+    #
+    #         ]
+    #
+    #     }    # order_details = {
+    #         "OrderId": "5615a707-17a2-4dea-986e-d150061f8ead",
+    #
+    #         "productOrderItem": [
+    #
+    #             {
+    #
+    #                 "orderItemId": "100",
+    #
+    #                 "OfferName": "Global Mobile Plus",
+    #
+    #                 "productOffering": "76",
+    #
+    #                 "action": "delete"
+    #
+    #             },
+    #
+    #             {
+    #
+    #                 "orderItemId": "101",
+    #
+    #                 "OfferName": "Global Mobile Plus",
+    #
+    #                 "productOffering": "154",
+    #
+    #                 "action": "add",
+    #
+    #                 "MobileData": "80",
+    #
+    #                 "MobileVoice": "100",
+    #
+    #                 "Text": "100",
+    #
+    #                 "Price": "50"
+    #
+    #             }
+    #
+    #         ]
+    #
+    #     }
