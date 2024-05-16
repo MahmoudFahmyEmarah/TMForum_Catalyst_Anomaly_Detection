@@ -33,15 +33,15 @@ def consumer_service(df):
         offer_statistics = get_unique_records(df, order_details['OfferName'])
         print(offer_statistics)
 
-        #openai model
+        #openai model call 
         response = format_and_send_prompt(offer_statistics, order_details)
-        if response['Potential_Complaint'] == 1:
+        if response['potentialComplaint'] == 1:
             orders_status = fetch_order_details(order_details)
             if orders_status == 0:
                 produce_complaint(config.KAFKA_PRODUCER_TOPIC, response)
                 print("response pushed to the producer topic")
 
-        logging.info(f"Processing order: {order_details['OrderId']}")
+        logging.info(f"Processing order: {order_details['orderId']}")
 
 
 def produce_complaint(topic_name, message):
@@ -99,3 +99,5 @@ def parse_kafka_response(order_details):
 
     # Return the successfully flattened dictionary
     return flattened
+# Modified 
+

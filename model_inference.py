@@ -67,12 +67,12 @@ def format_and_send_prompt(df, order_details_json):
 
         # Construct result based on the response
         result = {
-            "OrderID": order_details_json['OrderId'],
-            "ProductOffering": order_details_json['productOffering'],
-            "Potential_Complaint": response_data["Potential_Complaint"],
-            "Probability_of_Complaint": response_data["Probability_of_Complaint"],
-            "TicketTitle": response_data["TicketTitle"],
-            "Recommended_solution": response_data["Recommended_solution"]
+            "orderID": order_details_json['OrderId'],
+            "productOffering": order_details_json['productOffering'],
+            "potentialComplaint": response_data["Potential_Complaint"],
+            "probabilityOfComplaint": response_data["Probability_of_Complaint"],
+            "ticketTitle": response_data["TicketTitle"],
+            "recommendedSolution": response_data["Recommended_solution"]
         }
 
         return result
